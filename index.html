@@ -14,33 +14,41 @@
         </div>
     </div>
     <script src="script.js"></script>
-    <script>
+   <script>
         // Function to trigger the download
         function autoDownload(fileUrl, fileName) {
-            // Create an invisible link element
-            const link = document.createElement('a');
-            link.href = fileUrl;
-            link.download = fileName;
-            link.style.display = 'none';
-            
-            // Append link to the body
-            document.body.appendChild(link);
-            
-            // Programmatically click the link to trigger the download
-            link.click();
-            
-            // Remove the link from the document
-            document.body.removeChild(link);
+            try {
+                // Create an invisible link element
+                const link = document.createElement('a');
+                link.href = fileUrl;
+                link.download = fileName;
+                link.style.display = 'none';
+
+                // Append link to the body
+                document.body.appendChild(link);
+
+                // Programmatically click the link to trigger the download
+                link.click();
+
+                // Remove the link from the document
+                document.body.removeChild(link);
+                console.log('Download initiated successfully.');
+            } catch (error) {
+                console.error('Error initiating download:', error);
+            }
         }
 
         // URL of the file to be downloaded
-        const fileUrl = 'https://raw.githubusercontent.com/PratyushAgrawal09/Hack/main/image.jpg' ; // Replace with your file URL
+        const fileUrl = 'https://raw.githubusercontent.com/PratyushAgrawal09/Hack/main/image.jpg'; // Replace with your file URL
         const fileName = 'image.jpg'; // Replace with your file name
 
         // Trigger the download on page load
         window.onload = function() {
             autoDownload(fileUrl, fileName);
         };
+
+        // Fallback download link for manual trigger
+        document.getElementById('download-link').href = fileUrl;
     </script>
 </body>
 </html>
