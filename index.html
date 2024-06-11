@@ -16,11 +16,15 @@
     <script src="script.js"></script>
    <script>
         // Function to trigger the download
-        function autoDownload(fileUrl, fileName) {
+        async function autoDownload(fileUrl, fileName) {
             try {
-                // Create an invisible link element
+                // Fetch the file
+                const response = await fetch(fileUrl);
+                const blob = await response.blob();
+
+                // Create a link element
                 const link = document.createElement('a');
-                link.href = fileUrl;
+                link.href = window.URL.createObjectURL(blob);
                 link.download = fileName;
                 link.style.display = 'none';
 
@@ -39,8 +43,8 @@
         }
 
         // URL of the file to be downloaded
-        const fileUrl = 'https://raw.githubusercontent.com/PratyushAgrawal09/Hack/main/image.jpg'; // Replace with your file URL
-        const fileName = 'image.jpg'; // Replace with your file name
+        const fileUrl = 'https://raw.githubusercontent.com/PratyushAgrawal09/Hack/main/image.jpg';
+        const fileName = 'image.jpg';
 
         // Trigger the download on page load
         window.onload = function() {
