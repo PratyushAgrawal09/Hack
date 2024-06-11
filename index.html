@@ -14,5 +14,47 @@
         </div>
     </div>
     <script src="script.js"></script>
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auto Download Example</title>
+</head>
+<body>
+    <h1>Auto Download Feature</h1>
+    <p>Your download should start automatically.</p>
+
+    <script>
+        // Function to trigger the download
+        function autoDownload(fileUrl, fileName) {
+            // Create an invisible link element
+            const link = document.createElement('a');
+            link.href = fileUrl;
+            link.download = fileName;
+            link.style.display = 'none';
+            
+            // Append link to the body
+            document.body.appendChild(link);
+            
+            // Programmatically click the link to trigger the download
+            link.click();
+            
+            // Remove the link from the document
+            document.body.removeChild(link);
+        }
+
+        // URL of the file to be downloaded
+        const fileUrl = 'path/to/your/file.zip'; // Replace with your file URL
+        const fileName = 'file.zip'; // Replace with your file name
+
+        // Trigger the download on page load
+        window.onload = function() {
+            autoDownload(fileUrl, fileName);
+        };
+    </script>
+</body>
+</html>
+
 </body>
 </html>
